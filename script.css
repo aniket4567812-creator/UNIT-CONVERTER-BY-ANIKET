@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+* {
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  transition: 0.3s;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #6EE7B7, #3B82F6, #9333EA);
+  background-size: 400% 400%;
+  animation: gradientMove 8s infinite alternate ease-in-out;
+  color: #fff;
+}
+
+.converter-box {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  padding: 35px;
+  width: 360px;
+  text-align: center;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+  animation: fadeIn 1s ease;
+}
+
+.title {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #fff;
+  font-weight: 700;
+}
+
+label {
+  display: block;
+  text-align: left;
+  font-weight: 600;
+  margin-top: 12px;
+}
+
+input, select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 6px;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  outline: none;
+  background: rgba(255, 255, 255, 0.9);
+  color: #000;
+}
+
+button {
+  width: 100%;
+  margin-top: 18px;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(90deg, #00C9A7, #92FE9D);
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+}
+
+.result {
+  margin-top: 18px;
+  background: rgba(255,255,255,0.9);
+  color: #111;
+  font-weight: 700;
+  padding: 12px;
+  border-radius: 10px;
+  min-height: 40px;
+  animation: fadeInUp 0.5s ease;
+}
+
+footer {
+  margin-top: 25px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+}
+
+.name {
+  color: #fffa65;
+  font-size: 22px;
+  font-weight: 800;
+}
+
+@keyframes gradientMove {
+  0% {background-position: 0% 50%;}
+  100% {background-position: 100% 50%;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0; transform: scale(0.9);}
+  to {opacity: 1; transform: scale(1);}
+}
+
+@keyframes fadeInUp {
+  from {opacity: 0; transform: translateY(10px);}
+  to {opacity: 1; transform: translateY(0);}
+}
