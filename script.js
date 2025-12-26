@@ -1,66 +1,97 @@
-function convertUnit() {
-  const value = parseFloat(document.getElementById("inputValue").value);
-  const type = document.getElementById("conversionType").value;
-  const result = document.getElementById("resultValue");
+const conversionSelect = document.getElementById("conversion");
 
-  if (isNaN(value)) {
-    result.innerText = "Enter a valid number";
+const options = {
+  currency: [
+    { v: "USD-INR", t: "USD → INR" },
+    { v: "INR-USD", t: "INR → USD" }
+  ],
+  length: [
+    { v: "m-km", t: "Meters → Kilometers" },
+    { v: "km-m", t: "Kilometers → Meters" }
+  ],
+  weight: [
+    { v: "kg-g", t: "Kilograms → Grams" },
+    { v: "g-kg", t: "Grams → Kilograms" }
+  ],
+  temperature: [
+    { v: "c-f", t: "Celsius → Fahrenheit" },
+    { v: "f-c", t: "Fahrenheit → Celsius" }
+  ],
+  time: [
+    { v: "hr-min", t: "Hours → Minutes" },
+    { v: "min-hr", t: "Minutes → Hours" }
+  ]
+};
+
+let cachedRate = null;
+
+updateOptions();
+
+function updateOptions() {
+  const cat = document.getElementById("category").value;
+  conversionSelect.innerHTML = "";
+  options[cat].forEach(o => {
+    const opt = document.createElement("option");
+    opt.value = o.v;
+    opt.textContent = o.t;
+    conversionSelect.appendChild(opt);
+  });
+}
+
+async function getRate() {
+  if (cachedRate) return cachedRate;
+  const res = await fetch("https://api.frankfurter.app/latest?from=USD&to=INR");
+  const data = await res.json();
+  cachedRate = data.rates.INR;
+  return cachedRate;
+}
+
+async function convert() {
+  const val = parseFloat(document.getElementById("value").value);
+  const cat = document.getElementById("category").value;
+  const type = conversionSelect.value;
+  const out = document.getElementById("output");
+  const rate = document.getElementById("rate");
+  const time = document.getElementById("time");
+
+  if (isNaN(val)) {
+    out.textContent = "Invalid input";
     return;
   }
 
-  let output;
+  let result = "";
 
-  switch (type) {
-
-    /* Length */
-    case "km-m":
-      output = value * 1000 + " meters";
-      break;
-    case "km-mi":
-      output = (value * 0.621371).toFixed(3) + " miles";
-      break;
-    case "m-km":
-      output = (value / 1000).toFixed(3) + " km";
-      break;
-
-    /* Weight */
-    case "kg-g":
-      output = value * 1000 + " grams";
-      break;
-    case "kg-lb":
-      output = (value * 2.20462).toFixed(2) + " lbs";
-      break;
-    case "lb-kg":
-      output = (value / 2.20462).toFixed(2) + " kg";
-      break;
-
-    /* Temperature */
-    case "c-f":
-      output = ((value * 9/5) + 32).toFixed(1) + " °F";
-      break;
-    case "f-c":
-      output = ((value - 32) * 5/9).toFixed(1) + " °C";
-      break;
-
-    /* Currency (static rate) */
-    case "usd-inr":
-      output = "₹ " + (value * 83.0).toFixed(2);
-      break;
-    case "inr-usd":
-      output = "$ " + (value / 83.0).toFixed(2);
-      break;
-
-    /* Time */
-    case "hr-min":
-      output = value * 60 + " minutes";
-      break;
-    case "min-sec":
-      output = value * 60 + " seconds";
-      break;
-
-    default:
-      output = "Conversion not supported";
+  if (cat === "currency") {
+    const r = await getRate();
+    if (type === "USD-INR") result = `${(val * r).toFixed(2)} INR`;
+    else result = `${(val / r).toFixed(4)} USD`;
+    rate.textContent = `Live USD–INR rate`;
   }
 
-  result.innerText = output;
+  if (cat === "length") {
+    result = type === "m-km"
+      ? `${val / 1000} km`
+      : `${val * 1000} m`;
+  }
+
+  if (cat === "weight") {
+    result = type === "kg-g"
+      ? `${val * 1000} g`
+      : `${val / 1000} kg`;
+  }
+
+  if (cat === "temperature") {
+    result = type === "c-f"
+      ? `${(val * 9/5 + 32).toFixed(2)} °F`
+      : `${((val - 32) * 5/9).toFixed(2)} °C`;
+  }
+
+  if (cat === "time") {
+    result = type === "hr-min"
+      ? `${val * 60} min`
+      : `${val / 60} hr`;
+  }
+
+  out.textContent = result;
+  time.textContent = `Updated at ${new Date().toLocaleTimeString()}`;
 }
