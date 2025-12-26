@@ -1,50 +1,66 @@
-const convertBtn = document.getElementById("convert");
-const valueInput = document.getElementById("value");
-const typeSelect = document.getElementById("type");
-const resultDiv = document.getElementById("result");
+function convertUnit() {
+  const value = parseFloat(document.getElementById("inputValue").value);
+  const type = document.getElementById("conversionType").value;
+  const result = document.getElementById("resultValue");
 
-let usdToInr = 83; // default rate
-
-// 🪙 Fetch live currency rate
-async function updateLiveRate() {
-  try {
-    const res = await fetch("https://api.frankfurter.app/latest?from=USD&to=INR");
-    const data = await res.json();
-    usdToInr = data.rates.INR;
-    console.log(`💱 Live rate loaded: 1 USD = ₹${usdToInr}`);
-  } catch (err) {
-    console.warn("⚠️ Could not fetch live rate, using default 83.");
-  }
-}
-
-updateLiveRate();
-
-convertBtn.addEventListener("click", () => {
-  const val = parseFloat(valueInput.value);
-  const type = typeSelect.value;
-
-  if (isNaN(val)) {
-    resultDiv.textContent = "⚠️ Please enter a valid number!";
+  if (isNaN(value)) {
+    result.innerText = "Enter a valid number";
     return;
   }
 
-  let result = "";
+  let output;
 
   switch (type) {
-    case "km-miles": result = `${val} km = ${(val * 0.621371).toFixed(4)} miles`; break;
-    case "miles-km": result = `${val} miles = ${(val / 0.621371).toFixed(4)} km`; break;
-    case "m-cm": result = `${val} m = ${(val * 100).toFixed(2)} cm`; break;
-    case "cm-m": result = `${val} cm = ${(val / 100).toFixed(2)} m`; break;
-    case "kg-lbs": result = `${val} kg = ${(val * 2.20462).toFixed(4)} lbs`; break;
-    case "lbs-kg": result = `${val} lbs = ${(val / 2.20462).toFixed(4)} kg`; break;
-    case "c-f": result = `${val}°C = ${((val * 9/5) + 32).toFixed(2)}°F`; break;
-    case "f-c": result = `${val}°F = ${((val - 32) * 5/9).toFixed(2)}°C`; break;
-    case "inr-usd": result = `₹${val} = $${(val / usdToInr).toFixed(4)} USD`; break;
-    case "usd-inr": result = `$${val} = ₹${(val * usdToInr).toFixed(2)} INR`; break;
-    default: result = "❌ Conversion not supported.";
+
+    /* Length */
+    case "km-m":
+      output = value * 1000 + " meters";
+      break;
+    case "km-mi":
+      output = (value * 0.621371).toFixed(3) + " miles";
+      break;
+    case "m-km":
+      output = (value / 1000).toFixed(3) + " km";
+      break;
+
+    /* Weight */
+    case "kg-g":
+      output = value * 1000 + " grams";
+      break;
+    case "kg-lb":
+      output = (value * 2.20462).toFixed(2) + " lbs";
+      break;
+    case "lb-kg":
+      output = (value / 2.20462).toFixed(2) + " kg";
+      break;
+
+    /* Temperature */
+    case "c-f":
+      output = ((value * 9/5) + 32).toFixed(1) + " °F";
+      break;
+    case "f-c":
+      output = ((value - 32) * 5/9).toFixed(1) + " °C";
+      break;
+
+    /* Currency (static rate) */
+    case "usd-inr":
+      output = "₹ " + (value * 83.0).toFixed(2);
+      break;
+    case "inr-usd":
+      output = "$ " + (value / 83.0).toFixed(2);
+      break;
+
+    /* Time */
+    case "hr-min":
+      output = value * 60 + " minutes";
+      break;
+    case "min-sec":
+      output = value * 60 + " seconds";
+      break;
+
+    default:
+      output = "Conversion not supported";
   }
 
-  resultDiv.textContent = result;
-});
-
-
+  result.innerText = output;
+}
