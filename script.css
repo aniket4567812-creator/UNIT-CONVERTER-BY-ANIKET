@@ -1,166 +1,99 @@
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
-  font-family: 'Inter', sans-serif;
+  font-family: "Segoe UI", sans-serif;
 }
 
-.bg-gradient {
-  position: fixed;
-  inset: 0;
-  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-  z-index: -1;
+body {
+  margin: 0;
+  background: radial-gradient(circle at top, #1e3c46, #0b1f26);
+  color: #fff;
 }
 
-.app-wrapper {
-  max-width: 1100px;
-  margin: 40px auto;
+.app {
+  max-width: 1200px;
+  margin: auto;
   padding: 30px;
 }
 
-.app-header {
-  display: flex;
-  align-items: center;
-  gap: 15px;
+.header {
+  text-align: center;
   margin-bottom: 30px;
 }
 
-.logo {
-  font-size: 40px;
-}
-
-.title-group h1 {
-  color: white;
-  font-size: 32px;
-}
-
-.title-group span {
-  color: #2fffd8;
-}
-
-.title-group p {
-  color: #bcd;
-  font-size: 14px;
+.header h1 span {
+  color: #20ffd0;
 }
 
 .dashboard {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 30px;
+  gap: 25px;
 }
 
 .panel {
   background: rgba(255,255,255,0.08);
-  border-radius: 20px;
-  padding: 30px;
-  backdrop-filter: blur(14px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.35);
-}
-
-.panel-title {
-  color: white;
-  margin-bottom: 20px;
-}
-
-.form-group {
-  margin-bottom: 20px;
+  border-radius: 18px;
+  padding: 25px;
 }
 
 label {
-  color: #cfe;
-  font-size: 14px;
-  margin-bottom: 6px;
   display: block;
+  margin-top: 15px;
 }
 
 input, select {
   width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  margin-top: 6px;
+  font-size: 16px;
+}
+
+button {
+  width: 100%;
+  margin-top: 20px;
   padding: 14px;
   border-radius: 12px;
   border: none;
-  outline: none;
-  font-size: 15px;
-}
-
-.convert-btn {
-  width: 100%;
-  padding: 16px;
-  border-radius: 16px;
-  border: none;
-  background: linear-gradient(90deg, #00ffd5, #5effa1);
-  font-weight: 600;
   cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  background: linear-gradient(90deg, #1affb0, #00e6ff);
 }
 
 .result-box {
+  background: rgba(0,0,0,0.35);
   margin-top: 25px;
-  background: rgba(0,0,0,0.45);
-  padding: 20px;
+  padding: 18px;
   border-radius: 14px;
-  text-align: center;
 }
 
-.result-box h3 {
-  color: #9ff;
-}
-
-#resultValue {
-  color: white;
+#output {
   font-size: 26px;
-  font-weight: 700;
+  color: #1affb0;
 }
 
-.info-cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 15px;
+#rate, #time {
+  display: block;
+  font-size: 13px;
+  opacity: 0.8;
 }
 
-.info-card {
-  background: rgba(255,255,255,0.12);
-  padding: 20px;
-  border-radius: 16px;
+.info .badges {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+.info .badges span {
+  background: rgba(255,255,255,0.15);
+  padding: 8px 14px;
+  border-radius: 20px;
+}
+
+footer {
   text-align: center;
-  color: white;
+  margin-top: 30px;
+  opacity: 0.85;
 }
-
-.about {
-  margin-top: 25px;
-  color: #dff;
-}
-
-.app-footer {
-  margin-top: 40px;
-  text-align: center;
-  color: #cde;
-}
-
-.app-footer span {
-  color: #2fffd8;
-}
-
-.small {
-  font-size: 12px;
-  opacity: 0.7;
-}
-
-@media (max-width: 900px) {
-  .dashboard {
-    grid-template-columns: 1fr;
-  }
-}
-/* (everything above remains SAME as before) */
-
-.credit {
-  font-size: 18px;
-  font-weight: 600;
-  margin-bottom: 6px;
-}
-
-.credit span {
-  color: #2fffd8;
-  font-size: 20px;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-}
-
