@@ -1,115 +1,166 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
-
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
-  transition: 0.3s;
+  font-family: 'Inter', sans-serif;
 }
 
-body {
-  margin: 0;
-  height: 100vh;
+.bg-gradient {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  z-index: -1;
+}
+
+.app-wrapper {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 30px;
+}
+
+.app-header {
   display: flex;
   align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, #6EE7B7, #3B82F6, #9333EA);
-  background-size: 400% 400%;
-  animation: gradientMove 8s infinite alternate ease-in-out;
-  color: #fff;
+  gap: 15px;
+  margin-bottom: 30px;
 }
 
-.converter-box {
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(12px);
+.logo {
+  font-size: 40px;
+}
+
+.title-group h1 {
+  color: white;
+  font-size: 32px;
+}
+
+.title-group span {
+  color: #2fffd8;
+}
+
+.title-group p {
+  color: #bcd;
+  font-size: 14px;
+}
+
+.dashboard {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+.panel {
+  background: rgba(255,255,255,0.08);
   border-radius: 20px;
-  padding: 35px;
-  width: 360px;
-  text-align: center;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.3);
-  animation: fadeIn 1s ease;
+  padding: 30px;
+  backdrop-filter: blur(14px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.35);
 }
 
-.title {
+.panel-title {
+  color: white;
   margin-bottom: 20px;
-  font-size: 24px;
-  color: #fff;
-  font-weight: 700;
+}
+
+.form-group {
+  margin-bottom: 20px;
 }
 
 label {
+  color: #cfe;
+  font-size: 14px;
+  margin-bottom: 6px;
   display: block;
-  text-align: left;
-  font-weight: 600;
-  margin-top: 12px;
 }
 
 input, select {
   width: 100%;
-  padding: 10px;
-  margin-top: 6px;
+  padding: 14px;
+  border-radius: 12px;
   border: none;
-  border-radius: 8px;
-  font-size: 15px;
   outline: none;
-  background: rgba(255, 255, 255, 0.9);
-  color: #000;
+  font-size: 15px;
 }
 
-button {
+.convert-btn {
   width: 100%;
-  margin-top: 18px;
-  padding: 12px;
+  padding: 16px;
+  border-radius: 16px;
   border: none;
-  border-radius: 10px;
-  font-size: 16px;
+  background: linear-gradient(90deg, #00ffd5, #5effa1);
   font-weight: 600;
-  color: #fff;
-  background: linear-gradient(90deg, #00C9A7, #92FE9D);
   cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
 
-button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.4);
-}
-
-.result {
-  margin-top: 18px;
-  background: rgba(255,255,255,0.9);
-  color: #111;
-  font-weight: 700;
-  padding: 12px;
-  border-radius: 10px;
-  min-height: 40px;
-  animation: fadeInUp 0.5s ease;
-}
-
-footer {
+.result-box {
   margin-top: 25px;
+  background: rgba(0,0,0,0.45);
+  padding: 20px;
+  border-radius: 14px;
+  text-align: center;
+}
+
+.result-box h3 {
+  color: #9ff;
+}
+
+#resultValue {
+  color: white;
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.info-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.info-card {
+  background: rgba(255,255,255,0.12);
+  padding: 20px;
+  border-radius: 16px;
+  text-align: center;
+  color: white;
+}
+
+.about {
+  margin-top: 25px;
+  color: #dff;
+}
+
+.app-footer {
+  margin-top: 40px;
+  text-align: center;
+  color: #cde;
+}
+
+.app-footer span {
+  color: #2fffd8;
+}
+
+.small {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+@media (max-width: 900px) {
+  .dashboard {
+    grid-template-columns: 1fr;
+  }
+}
+/* (everything above remains SAME as before) */
+
+.credit {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.credit span {
+  color: #2fffd8;
   font-size: 20px;
   font-weight: 700;
-  color: #fff;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+  letter-spacing: 0.5px;
 }
 
-.name {
-  color: #fffa65;
-  font-size: 22px;
-  font-weight: 800;
-}
-
-@keyframes gradientMove {
-  0% {background-position: 0% 50%;}
-  100% {background-position: 100% 50%;}
-}
-
-@keyframes fadeIn {
-  from {opacity: 0; transform: scale(0.9);}
-  to {opacity: 1; transform: scale(1);}
-}
-
-@keyframes fadeInUp {
-  from {opacity: 0; transform: translateY(10px);}
-  to {opacity: 1; transform: translateY(0);}
-}
