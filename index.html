@@ -2,41 +2,113 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <title>Smart Unit Converter</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Unit Converter — Made by Aniket Chaudhary</title>
-  <link rel="stylesheet" href="style.css">
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="script.css">
 </head>
+
 <body>
-  <main class="container">
-    <h1>🌍 Smart Unit Converter</h1>
 
-    <label for="value" class="label">Enter Value</label>
-    <input type="number" id="value" placeholder="Enter number">
+  <div class="bg-gradient"></div>
 
-    <label for="type" class="label">Select Conversion Type</label>
-    <select id="type">
-      <option value="km-miles">Kilometers → Miles</option>
-      <option value="miles-km">Miles → Kilometers</option>
-      <option value="m-cm">Meters → Centimeters</option>
-      <option value="cm-m">Centimeters → Meters</option>
-      <option value="kg-lbs">Kilograms → Pounds</option>
-      <option value="lbs-kg">Pounds → Kilograms</option>
-      <option value="c-f">Celsius → Fahrenheit</option>
-      <option value="f-c">Fahrenheit → Celsius</option>
-      <option value="inr-usd">INR → USD</option>
-      <option value="usd-inr">USD → INR</option>
-    </select>
+  <div class="app-wrapper">
 
-    <button id="convert">Convert</button>
-    <div id="result" class="result"></div>
+    <!-- Header -->
+    <header class="app-header">
+      <div class="logo">⚡</div>
+      <div class="title-group">
+        <h1>Smart <span>Unit Converter</span></h1>
+        <p>Fast • Accurate • Dashboard UI</p>
+      </div>
+    </header>
 
-    <footer>MADE BY <strong>ANIKET CHAUDHARY</strong></footer>
-  </main>
+    <main class="dashboard">
+
+      <!-- Input Panel -->
+      <section class="panel panel-input">
+        <h2 class="panel-title">Conversion Input</h2>
+
+        <div class="form-group">
+          <label>Enter Value</label>
+          <input type="number" id="inputValue" placeholder="e.g. 500">
+        </div>
+
+        <div class="form-group">
+          <label>Select Conversion</label>
+          <select id="conversionType">
+
+            <optgroup label="Length">
+              <option value="km-m">Kilometers → Meters</option>
+              <option value="km-mi">Kilometers → Miles</option>
+              <option value="m-km">Meters → Kilometers</option>
+            </optgroup>
+
+            <optgroup label="Weight">
+              <option value="kg-g">Kilograms → Grams</option>
+              <option value="kg-lb">Kilograms → Pounds</option>
+              <option value="lb-kg">Pounds → Kilograms</option>
+            </optgroup>
+
+            <optgroup label="Temperature">
+              <option value="c-f">Celsius → Fahrenheit</option>
+              <option value="f-c">Fahrenheit → Celsius</option>
+            </optgroup>
+
+            <optgroup label="Currency">
+              <option value="usd-inr">USD → INR</option>
+              <option value="inr-usd">INR → USD</option>
+            </optgroup>
+
+            <optgroup label="Time">
+              <option value="hr-min">Hours → Minutes</option>
+              <option value="min-sec">Minutes → Seconds</option>
+            </optgroup>
+
+          </select>
+        </div>
+
+        <button class="convert-btn" onclick="convertUnit()">Convert Now</button>
+
+        <div class="result-box">
+          <h3>Result</h3>
+          <div id="resultValue">—</div>
+        </div>
+      </section>
+
+      <!-- Info Panel -->
+      <section class="panel panel-info">
+        <h2 class="panel-title">Why This Tool?</h2>
+
+        <div class="info-cards">
+          <div class="info-card">⚡<h4>Fast</h4><p>Instant results</p></div>
+          <div class="info-card">🎯<h4>Accurate</h4><p>Standard formulas</p></div>
+          <div class="info-card">💎<h4>Premium UI</h4><p>Dashboard inspired</p></div>
+        </div>
+
+        <div class="about">
+          <h3>About</h3>
+          <p>
+            A multi-unit converter inspired by modern health dashboards,
+            designed for clarity and performance.
+          </p>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <p class="credit">Made with ❤️ by <span>Aniket Chaudhary</span></p>
+      <p class="small">Smart Unit Converter • HTML • CSS • JavaScript</p>
+    </footer>
+
+  </div>
 
   <script src="script.js"></script>
 </body>
 </html>
-
-
-
-
