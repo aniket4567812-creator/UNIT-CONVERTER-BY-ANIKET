@@ -3,108 +3,69 @@
 <head>
   <meta charset="UTF-8">
   <title>Smart Unit Converter</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-  <!-- CSS -->
   <link rel="stylesheet" href="script.css">
 </head>
 
 <body>
+  <div class="app">
 
-  <div class="bg-gradient"></div>
-
-  <div class="app-wrapper">
-
-    <!-- Header -->
-    <header class="app-header">
-      <div class="logo">⚡</div>
-      <div class="title-group">
-        <h1>Smart <span>Unit Converter</span></h1>
-        <p>Fast • Accurate • Dashboard UI</p>
-      </div>
+    <header class="header">
+      <h1>⚡ Smart <span>Unit Converter</span></h1>
+      <p>Fast • Accurate • Live Currency</p>
     </header>
 
     <main class="dashboard">
 
-      <!-- Input Panel -->
-      <section class="panel panel-input">
-        <h2 class="panel-title">Conversion Input</h2>
+      <!-- LEFT -->
+      <section class="panel">
+        <h2>Conversion Input</h2>
 
-        <div class="form-group">
-          <label>Enter Value</label>
-          <input type="number" id="inputValue" placeholder="e.g. 500">
-        </div>
+        <label>Enter Value</label>
+        <input type="number" id="value" value="1">
 
-        <div class="form-group">
-          <label>Select Conversion</label>
-          <select id="conversionType">
+        <label>Category</label>
+        <select id="category" onchange="updateOptions()">
+          <option value="currency">Currency</option>
+          <option value="length">Length</option>
+          <option value="weight">Weight</option>
+          <option value="temperature">Temperature</option>
+          <option value="time">Time</option>
+        </select>
 
-            <optgroup label="Length">
-              <option value="km-m">Kilometers → Meters</option>
-              <option value="km-mi">Kilometers → Miles</option>
-              <option value="m-km">Meters → Kilometers</option>
-            </optgroup>
+        <label>Conversion</label>
+        <select id="conversion"></select>
 
-            <optgroup label="Weight">
-              <option value="kg-g">Kilograms → Grams</option>
-              <option value="kg-lb">Kilograms → Pounds</option>
-              <option value="lb-kg">Pounds → Kilograms</option>
-            </optgroup>
-
-            <optgroup label="Temperature">
-              <option value="c-f">Celsius → Fahrenheit</option>
-              <option value="f-c">Fahrenheit → Celsius</option>
-            </optgroup>
-
-            <optgroup label="Currency">
-              <option value="usd-inr">USD → INR</option>
-              <option value="inr-usd">INR → USD</option>
-            </optgroup>
-
-            <optgroup label="Time">
-              <option value="hr-min">Hours → Minutes</option>
-              <option value="min-sec">Minutes → Seconds</option>
-            </optgroup>
-
-          </select>
-        </div>
-
-        <button class="convert-btn" onclick="convertUnit()">Convert Now</button>
+        <button onclick="convert()">Convert Now</button>
 
         <div class="result-box">
           <h3>Result</h3>
-          <div id="resultValue">—</div>
+          <div id="output">—</div>
+          <small id="rate"></small>
+          <small id="time"></small>
         </div>
       </section>
 
-      <!-- Info Panel -->
-      <section class="panel panel-info">
-        <h2 class="panel-title">Why This Tool?</h2>
+      <!-- RIGHT -->
+      <section class="panel info">
+        <h2>Why This Tool?</h2>
 
-        <div class="info-cards">
-          <div class="info-card">⚡<h4>Fast</h4><p>Instant results</p></div>
-          <div class="info-card">🎯<h4>Accurate</h4><p>Standard formulas</p></div>
-          <div class="info-card">💎<h4>Premium UI</h4><p>Dashboard inspired</p></div>
+        <div class="badges">
+          <span>⚡ Fast</span>
+          <span>🎯 Accurate</span>
+          <span>🧠 Multi-Unit</span>
         </div>
 
-        <div class="about">
-          <h3>About</h3>
-          <p>
-            A multi-unit converter inspired by modern health dashboards,
-            designed for clarity and performance.
-          </p>
-        </div>
+        <p>
+          A modern multi-unit converter inspired by dashboard-style UIs.
+          Supports currency, length, weight, temperature and time with
+          optimized logic for instant results.
+        </p>
       </section>
 
     </main>
 
-    <!-- Footer -->
-    <footer class="app-footer">
-      <p class="credit">Made with ❤️ by <span>Aniket Chaudhary</span></p>
-      <p class="small">Smart Unit Converter • HTML • CSS • JavaScript</p>
+    <footer>
+      Made with ❤️ by <strong>Aniket Chaudhary</strong>
     </footer>
 
   </div>
